@@ -17,9 +17,11 @@
 
 
 
-
 </head>
 <body>
+
+
+
 
 <form>
 
@@ -47,7 +49,7 @@
 
             </tbody>
         </table>
-        <button type="button" class="btn btn-success">Adicionar novo</button>
+        <button type="button" class="btn btn-success" onclick="adconfirm()">Adicionar novo</button>
 
 
 
@@ -59,9 +61,23 @@
             alert("Deseja remover  ?");
         }
 
+        function adconfirm(){
+            alert("Usuário incluído com sucesso!")
+
+        }
+
+        function excluirUsuario(){
+            alert("Erro ao excluir usuario!")
+
+
+        }
+
+
         $('#myModal').on('shown.bs.modal', function () {
             $('#myInput').trigger('focus')
         })
+
+
 
     </script>
 
