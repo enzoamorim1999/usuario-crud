@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -36,16 +36,17 @@
             </tr>
             </thead>
             <tbody>
+            <th:block th:each="usuario : ${usuarios}">
             <tr>
-                <th scope="row">1</th>
-                <td>Davi</td>
-                <td>Gordo</td>
+                <th scope="row" th:text="${usuario.getId()}">1</th>
+                <td th:text="${usuario.getNomeCompleto()}">Davi</td>
+                <td th:text="${usuario.isAtivado()}"></td>
                 <td><input class="btn btn-primary" type="button" value="Editar" >
                     <input class="btn btn-danger" type="button" value="Remover" onclick="confirm()">
                 </td>
 
             </tr>
-
+            </th:block>
 
             </tbody>
         </table>

@@ -1,10 +1,14 @@
 package br.senac.tads.dsw.usuariocrud;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Set;
 
+@Entity
 public class Usuario {
-	
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	private String username;
@@ -16,7 +20,8 @@ public class Usuario {
 	private boolean ativado;
 	
 	private LocalDateTime dataHoraCadastro;
-	
+
+	@OneToMany
 	private Set<Papel> papeis;
 
 	public Long getId() {
