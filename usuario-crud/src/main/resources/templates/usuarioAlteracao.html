@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -19,23 +19,23 @@
 </head>
 <body>
 
-<form class="center">
+<form class="center" th:method="PUT" th:action="@{'/editar/' + ${Usuario.getId()}}" th:object="${Usuario}" >
     <div class="form-group row">
         <label for="userName" class="col-sm-2 col-form-label">Username</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="userName" placeholder="Username">
+            <input type="text" class="form-control" required name="username" id="userName" placeholder="Username" th:field="*{username}">
         </div>
     </div>
     <div class="form-group row">
         <label for="nomeCompleto" class="col-sm-2 col-form-label">Nome Completo</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="nomeCompleto" placeholder="Nome Completo">
+            <input type="text" class="form-control" id="nomeCompleto" required name="nomeCompleto" placeholder="Nome Completo" th:field="*{nomeCompleto}">
         </div>
     </div>
     <div class="form-group row">
         <label for="senha" class="col-sm-2 col-form-label">Senha</label>
         <div class="col-sm-10">
-            <input type="password" class="form-control" id="senha" placeholder="*****">
+            <input type="password" class="form-control" name="senha"  id="senha" placeholder="*****" th:field="*{senha}">
         </div>
     </div>
     <fieldset class="form-group">
@@ -43,14 +43,14 @@
             <legend class="col-form-label col-sm-2 pt-0">Status ativação</legend>
             <div class="col-sm-10">
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+                    <input class="form-check-input" type="radio"  name="ativado" id="gridRadios1" value="true" checked th:field="*{ativado}">
                     <label class="form-check-label" for="gridRadios1">
                         Ativado
                     </label>
 
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+                    <input class="form-check-input" type="radio" name="ativado"  id="gridRadios2" value="false" th:field="*{ativado}">
 
                     <label class="form-check-label">Desativado</label>
                 </div>
@@ -62,19 +62,19 @@
         <div class="col-sm-2">Papéis</div>
         <div class="col-sm-10">
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="gridCheck1">
+                <input class="form-check-input" type="checkbox"  id="gridCheck1">
                 <label class="form-check-label" for="gridCheck1">
                     Admin
                 </label>
             </div>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="gridCheck2">
+                <input class="form-check-input" type="checkbox"   id="gridCheck2">
                 <label class="form-check-label" for="gridCheck2">
                     Papel1
                 </label>
             </div>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="gridCheck3">
+                <input class="form-check-input" type="checkbox"  id="gridCheck3">
                 <label class="form-check-label" for="gridCheck3">
                     Papel2
                 </label>
@@ -90,7 +90,7 @@
     <div class="form-group row">
         <div class="col-sm-10">
             <button type="submit" class="btn btn-success">Salvar</button>
-            <button type="submit" class="btn btn-warning">Cancelar</button>
+            <a href="/usuarios" class="btn btn-warning">Cancelar</a>
         </div>
 
 

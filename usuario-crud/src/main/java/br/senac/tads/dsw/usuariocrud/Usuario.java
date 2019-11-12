@@ -1,7 +1,12 @@
 package br.senac.tads.dsw.usuariocrud;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.springframework.context.annotation.Primary;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Set;
 
 @Entity
@@ -21,7 +26,15 @@ public class Usuario {
 	
 	private LocalDateTime dataHoraCadastro;
 
-	@OneToMany
+	@ElementCollection(targetClass = Papel.class)
+	@JoinTable(name="USUARIO_PAPEL",
+			joinColumns={@JoinColumn(name="ID_USUARIO",
+					referencedColumnName="id")},
+			inverseJoinColumns={@JoinColumn(name="ID_PERFIL",
+					referencedColumnName="id")})
+	@OneToMany(fetch = FetchType.EAGER)
+	@Fetch(FetchMode.SUBSELECT)
+	@Column(name = "ID_PAPEL")
 	private Set<Papel> papeis;
 
 	public Long getId() {
@@ -73,6 +86,7 @@ public class Usuario {
 	}
 
 	public Set<Papel> getPapeis() {
+
 		return papeis;
 	}
 
